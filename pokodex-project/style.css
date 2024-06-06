@@ -5,11 +5,26 @@
 
 header {
   display: flex;
-    justify-content: center;
-    padding: 40px;
-    background-color: cadetblue;
-    color: white;
+  justify-content: space-between;
+  padding: 40px;
+  background-color: cadetblue;
+  color: white;
+  align-items: center;
 }
+
+.search-bar {
+  border: none;
+  padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+   background-color: white;
+}
+
+.search-bar:focus {
+  outline: none;
+} 
+
 
 body {
     font-family: sans-serif;
@@ -68,5 +83,6 @@ body {
     justify-content: center;
     gap: 15px;
   }
+
 
 
