@@ -4,17 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="init()">
     <header>
       <h1>Pokodex</h1>
-      <div>
-        <input class="search-bar" type="text" placeholder="Search pokemon..." />
-      </div>
+      <input class="search-bar" type="text" placeholder="Search pokemon..." />
     </header>
 
     <div class="pokemon-container" id="pokemon-container"></div>
+
+    <div class="load-btn-container">
+      <button onclick="loadMorePokemon()" type="button" class="btn btn-primary load-button">
+        loadMore
+      </button>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

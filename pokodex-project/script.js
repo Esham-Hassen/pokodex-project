@@ -16,7 +16,6 @@ async function fetchPokemon() {
     const pokemonList = data.results;
 
     await loadPokemonDetails(pokemonList);
-    // renderPokemons();
     renderAllPokemonCards();
   } catch (error) {
     console.error("Error fetching Pokémon data:", error);
@@ -66,6 +65,11 @@ function getPokemonImage(pokemon) {
 function getTypeColor(pokemon) {
   const primaryType = pokemon.types[0].type.name;
   return typeColors[primaryType] || "#FFFFFF";
+}
+
+
+function loadMorePokemon() {
+  
 }
 
 
