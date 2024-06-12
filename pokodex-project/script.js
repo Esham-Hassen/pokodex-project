@@ -7,18 +7,34 @@ function init() {
   fetchPokemon();
 }
 
+// async function fetchPokemon() {
+//   try {
+//     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+//     const data = await response.json();
+//     const pokemonList = data.results;
+//     await loadPokemonDetails(pokemonList);
+//     renderAllPokemonCards(); // Pass filteredPokemons to render function
+//   } catch (error) {
+//     console.error("Error fetching Pokémon data:", error);
+//   }
+// }
+
 async function fetchPokemon() {
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch Pokémon data');
+    }
     const data = await response.json();
     const pokemonList = data.results;
     await loadPokemonDetails(pokemonList);
-    filteredPokemons = allPokemons; // Ensure filteredPokemons is initialized
-    renderAllPokemonCards(filteredPokemons); // Pass filteredPokemons to render function
+    renderAllPokemonCards(allPokemons); // Ensure allPokemons array is populated before rendering
   } catch (error) {
     console.error("Error fetching Pokémon data:", error);
   }
 }
+
+
 
 async function loadPokemonDetails(pokemonList) {
   for (let i = 0; i < pokemonList.length; i++) {
@@ -93,13 +109,22 @@ function getTypeColor(pokemon) {
 
 function loadMorePokemon() {
   offset += limit;
+  init()
 }
 
 
-function filterPokemon(filterword) {
-  filteredPokemons = allPokemons.filter((pokemon) =>
-    pokemon.name.toLowerCase().startsWith(filterword.toLowerCase())
-  );
-  renderAllPokemonCards(filteredPokemons);
-}
 
+function filterPokemon() {
+  let pokemonValue = document.getElementById("search-bar").value.toLowerCase();
+if (pokemonValue.length >= 3) {
+    filteredPokemons = allPokemons.filter(pokemon =>
+      pokemon.name.toLowerCase().includes(pokemonValue)
+    );
+
+    renderAllPokemonCards(filteredPokemons);
+    document.getElementById("loadmore-pokemon").style.display = "block";
+  } else {
+    renderAllPokemonCards(allPokemons);
+    document.getElementById("loadmore-pokemon").style.display = "none";
+  }
+}
