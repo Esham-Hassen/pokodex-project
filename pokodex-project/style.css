@@ -44,7 +44,7 @@ header {
   margin-top: 30px;
 }
 
-.pokemon-content {
+/* .pokemon-content {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -53,9 +53,9 @@ header {
   padding: 20px;
   text-align: center;
   width: 200px;
-}
+} */
 
-.image-container {
+/* .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +63,7 @@ header {
 
 .pokemon-types {
   object-fit: contain;
-}
+} */
 
 
 .pokemon-card {
@@ -80,11 +80,11 @@ header {
   height: 300px; 
 }
 
-.pokemon-container {
+/* .pokemon-container {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   
   .pokemon-image {
     max-width: 200px; 
