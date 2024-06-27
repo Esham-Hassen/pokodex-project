@@ -1,12 +1,14 @@
 let allPokemons = [];
 let filteredPokemons = [];
-let limit = 30;
+let limit = 24;
 let offset = 0;
 
  async function init() {
- let pokemonList= await fetchPokemon();
- allPokemons.push(...pokemonList)
-  renderPokemonCards(allPokemons); // Render the combined list
+  showLoadingSpinner();
+  let pokemonList = await fetchPokemon();
+  allPokemons.push(...pokemonList);
+  await renderPokemonCards(pokemonList); // Render the combined list
+  hideLoadingSpinner();
 }
 
 async function fetchPokemon() {
@@ -34,6 +36,7 @@ async function getPokemonDetails(pokemonUrl) {
 
 
 async function renderPokemonCards(pokemons) {
+
   let container = document.getElementById("pokemon-container");
   for (let i = 0; i < pokemons.length; i++) {
       const pokemon = pokemons[i];
@@ -41,18 +44,17 @@ async function renderPokemonCards(pokemons) {
         const details = await getPokemonDetails(pokemon.url);
         const imageUrl = details.sprites.other['official-artwork'].front_default;
         const typeColor = getTypeColor(details);
-          container.innerHTML += generatePokemonCardsHTML(pokemon, imageUrl, typeColor);
+          container.innerHTML += generatePokemonCardsHTML(pokemon, imageUrl, typeColor,details.id, i);
     }
 }
 
 
-function generatePokemonCardsHTML(pokemon,imageUrl,typeColor) {
+function generatePokemonCardsHTML(pokemon,imageUrl,typeColor,id, i) {
 const capitalizedPokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-return  `<div class="pokemon-card" style="background-color:${typeColor}">
- <h2>${capitalizedPokemonName}</h2>
+return  `<div onclick="openPokemon(${i})" class="pokemon-card" style="background-color:${typeColor}">
+  <h2>#${id} ${capitalizedPokemonName}</h2>
 <img class="pokemon-image" src="${imageUrl}">
 </div>`
-
 }
 
 function getTypeColor(pokemon) {
@@ -84,26 +86,85 @@ function getTypeColor(pokemon) {
   return typeColors[primaryType] || "#FFFFFF";
  }
 
-function loadMorePokemon() {
+ function loadMorePokemon() {
+  showLoadingSpinner();
   offset += limit;
- init()
+  init()
 }
 
 function filterPokemon() {
   let pokemonValue = document.getElementById("search-bar").value.toLowerCase();
   if (pokemonValue.length >= 3) {
     const filteredPokemons = allPokemons.filter(pokemon => pokemon.name.toLowerCase().includes(pokemonValue));
-    document.getElementById("pokemon-container").innerHTML = ""; // Clear container before rendering filtered results
+    document.getElementById("pokemon-container").innerHTML = "";
     renderPokemonCards(filteredPokemons);
     document.getElementById("loadmore-pokemon").style.display = "block";
   } else {
-    document.getElementById("pokemon-container").innerHTML = ""; // Clear container before rendering all results
+    document.getElementById("pokemon-container").innerHTML = "";
     renderPokemonCards(allPokemons);
     document.getElementById("loadmore-pokemon").style.display = "none";
   }
 }
 
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function showLoadingSpinner() {
+  document.getElementById("loading-spinner").classList.remove('d-none');
+  document.getElementById('pokemon-container').classList.remove('d-none');
+  document.getElementById('loadmore-pokemon').classList.add('d-none');
+  document.getElementById('pokemon-container').classList.add('loading');
 }
+
+function hideLoadingSpinner() {
+  document.getElementById('loading-spinner').classList.add('d-none');
+  document.getElementById('pokemon-container').classList.remove('loading')
+}
+
+
+
+async function openPokemon(index) {
+  try {
+      const pokemon = allPokemons[index]; 
+      const details = await getPokemonDetails(pokemon.url);
+      const imageUrl = details.sprites.other['official-artwork'].front_default;
+      const typeColor = getTypeColor(details);
+
+      // Assuming you have a container element where you want to display the details
+      const container = document.getElementById('pokemon-container');
+
+      // Generate HTML for displaying Pokémon details
+      container.innerHTML = `
+          <div class="details-content" style="background-color:${typeColor}">
+          <div>
+                  <div>
+                      <p>${pokemon.name}</p>
+                  </div>
+  
+              <div class="pokemon-image-container">
+                  <img class="pokemon-image" src="${imageUrl}" alt="${pokemon.name}">
+              </div>
+
+              <div class="stats">
+                  <div>Type: ${details.types[0]?.type.name}</div>
+                  <div>Height: ${details.height}</div>
+                  <div>Weight: ${details.weight}</div>
+                  <div>${details.stats[0]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[0]?.base_stat - 40}%"></div></div></div>
+                  <div>${details.stats[1]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[1]?.base_stat - 40}%"></div></div></div>
+                  <div>${details.stats[2]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[2]?.base_stat - 40}%"></div></div></div>
+                  <div>${details.stats[5]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[5]?.base_stat - 40}%"></div></div></div>
+              </div>
+          </div>
+      `;
+  } catch (error) {
+      console.error('Error fetching or displaying Pokémon details:', error);
+  }
+}
+
+// Function to close the Pokémon details card
+function closeCard() {
+  const container = document.getElementById('pokemon-container');
+  if (container) {
+      container.innerHTML = ''; // Clear the container to close the details card
+  }
+}
+
+
+

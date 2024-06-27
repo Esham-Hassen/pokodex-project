@@ -12,9 +12,22 @@
     <h1>Pokédex</h1>
     <input onkeyup="filterPokemon()" id="search-bar" class="search-bar" type="text" placeholder="Search Pokémon...">
   </header>
- 
-  <div class="pokemon-container" id="pokemon-container"></div>
-  <div class="load-btn-container">
+
+  <div class="pokemon-container" id="pokemon-container"> </div>
+
+  
+
+  <div class="loading-container">
+    <img class="spinner-img" src="img/pokemon-1536849_1280.png" id="loading-spinner">
+  </div>
+
+
+
+
+
+
+
+  <div class="load-btn-container" >
     <button onclick="loadMorePokemon()" id="loadmore-pokemon" type="button" class="btn btn-primary load-button">
       Load More
     </button>
