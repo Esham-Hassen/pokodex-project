@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #f0f0f0;
+  background-color: #1c1b1b;
   font-family: sans-serif;
   font-weight: bold;
 }
@@ -140,30 +140,7 @@ header {
 
 
 
- /* play: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  bottom: 50%;
-  left: 0;.loading-container {
-  dis
-  right: 0;
-} 
 
 
-.d-none {
-  display: none;
-}
 
-.loading {
-  opacity: 0.2;
-} 
-
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}  */
 

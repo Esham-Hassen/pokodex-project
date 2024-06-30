@@ -6,6 +6,7 @@
   <title>Pokédex</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chart.css">
 </head>
 <body onload="init()">
   <header>
@@ -15,17 +16,10 @@
 
   <div class="pokemon-container" id="pokemon-container"> </div>
 
-  
 
   <div class="loading-container">
     <img class="spinner-img " src="img/pokemon-1536849_1280.png" id="loading-spinner">
   </div>
-
-
-
-
-
-
 
   <div class="load-btn-container" >
     <button onclick="loadMorePokemon()" id="loadmore-pokemon" type="button" class="btn btn-primary load-button">
@@ -33,5 +27,6 @@
     </button>
   </div>
   <script src="script.js"></script>
+  <script src="chart.js"></script>
 </body>
 </html>
