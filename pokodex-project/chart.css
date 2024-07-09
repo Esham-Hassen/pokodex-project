@@ -1,72 +1,77 @@
-
 .details-content {
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  
-  .pokemon-image-container {
-    text-align: center;
-    margin: 20px 0;
-    padding: 20px;
-    background-color: black;
-    border-radius: 15px;
-  }
-  
-  .stats {
-    margin-top: 20px;
-  }
-  
-  .stats h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .stat-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 14px;
-  }
-  
-  .stat-item div {
-    margin-right: 10px;
-  }
-  
-  
-  .complete-bar {
-    background-color: #ddd;
-    border-radius: 5px;
-    flex-grow: 1;
-    overflow: hidden;
-    margin-right: 10px;
-  }
-  
-  .bar {
-    height: 20px;
-    border-radius: 5px;
-    background-color: #4c6aaf;
-  }
-  
-  
-  
-  .navigation-buttons {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .navigation-buttons button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #1327aa;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .navigation-buttons button:hover {
-    background-color: #178a95;
-  }
-  
+  position: absolute;
+  width: 300px; 
+  height: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 10;
+  top: 2%;
+}
+
+.pokemon-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.go-back {
+  cursor: pointer;
+}
+
+.pokemon-image-container {
+  margin: 20px 0;
+}
+
+.pokemon-image {
+  width: 100%;
+  height: auto;
+}
+
+.stats {
+  text-align: left;
+  color: white;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.complete-bar {
+  width: 70%;
+  height: 10px;
+  background-color: #ccc;
+  margin: 0 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  background-color: black;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.previous-btn,
+.next-btn {
+  padding: 10px 20px;
+  background-color: #158a3a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.previous-btn:hover,
+.next-btn:hover {
+  background-color: #263ad4;
+}

@@ -103,59 +103,29 @@ function filterPokemon() {
     );
     document.getElementById("pokemon-container").innerHTML = "";
     renderPokemonCards(filteredPokemons);
-    document.getElementById("loadmore-pokemon").style.display = "block";
   } else {
     document.getElementById("pokemon-container").innerHTML = "";
     renderPokemonCards(allPokemons);
-    document.getElementById("loadmore-pokemon").style.display = "none";
+    document.getElementById("loadmore-pokemon").style.display = "block"; 
   }
+  document.getElementById('loadmore-pokemon').classList.add('d-none')
+  openPokemon() 
 }
 
 function showLoadingSpinner() {
+  document.getElementById("load-btn-container").classList.add("d-none");
   document.getElementById("loading-spinner").classList.remove("d-none");
   document.getElementById("pokemon-container").classList.remove("d-none");
-  document.getElementById("loadmore-pokemon").classList.add("d-none");
   document.getElementById("pokemon-container").classList.add("loading");
 }
 
 function hideLoadingSpinner() {
+  document.getElementById("load-btn-container").classList.remove("d-none");
   document.getElementById("loading-spinner").classList.add("d-none");
   document.getElementById("pokemon-container").classList.remove("loading");
+ 
 }
 
-// async function openPokemon(index) {
-//   try {
-//     const pokemon = allPokemons[index];
-//     const details = await getPokemonDetails(pokemon.url);
-//     const imageUrl = details.sprites.other["official-artwork"].front_default;
-//     const typeColor = getTypeColor(details);
-//     const container = document.getElementById("pokemon-container");
-
-//     container.innerHTML = `
-//           <div class="details-content" style="background-color:${typeColor}">
-//                   <div>
-//                       <p>${pokemon.name}</p>
-//                   </div>
-  
-//               <div class="pokemon-image-container">
-//                   <img class="pokemon-image" src="${imageUrl}" alt="${pokemon.name}">
-//               </div>
-
-//                <div class="stats">
-//                   <div>Type: ${details.types[0]?.type.name}</div>
-//                   <div>Height: ${details.height}</div>
-//                   <div>Weight: ${details.weight}</div>
-//                   <div>${details.stats[0]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[0]?.base_stat - 40}%"></div></div></div>
-//                   <div>${details.stats[1]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[1]?.base_stat - 40}%"></div></div></div>
-//                   <div>${details.stats[2]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[2]?.base_stat - 40}%"></div></div></div>
-//                   <div>${details.stats[5]?.stat.name}:<div class="complete-bar"><div class="bar" style="width: ${details.stats[5]?.base_stat - 40}%"></div></div></div>
-//               </div>
-//           </div>
-//       `;
-//   } catch (error) {
-//     console.error("Error fetching or displaying Pokémon details:", error);
-//   }
-// }
 
 
 

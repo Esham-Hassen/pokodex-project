@@ -4,7 +4,7 @@
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -50,8 +50,6 @@ header {
 
 .pokemon-card {
   border: 1px solid #ddd;
-  width: 25vh;
-  height: 25vh;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   padding: 10px;
@@ -130,17 +128,4 @@ header {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
