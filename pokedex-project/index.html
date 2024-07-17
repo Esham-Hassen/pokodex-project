@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="chart.css" />
+  </head>
+  <body onload="init()">
+    <header id="header">
+      <h1>Pokédex</h1>
+      <input
+        onkeyup="filterPokemon()"
+        id="search-bar"
+        class="search-bar"
+        type="text"
+        placeholder="Search Pokémon..."
+      />
+    </header>
+
+    <div class="main-container">
+      <div class="pokemon-container" id="pokemon-container">
+        <div class="loading-container" id="load-container">
+          <img
+            class="spinner-img"
+            src="img/pokemon-1536849_1280.png"
+            id="loading-spinner"
+          />
+        </div>
+      </div>
+
+      <div
+        class="pokemon-details-container d-none"
+        id="pokemon-details-container"
+      ></div>
+
+      <div class="load-btn-container" id="load-btn-container">
+        <button
+          onclick="loadMorePokemon()"
+          id="loadmore-pokemon"
+          type="button"
+          class="btn btn-primary load-button"
+        >
+          Load More
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="chart.js"></script>
+  </body>
+</html>
